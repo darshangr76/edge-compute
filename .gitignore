@@ -1,0 +1,5 @@
+node_modules/
+build/
+*.pem
+*.key
+.DS_Store

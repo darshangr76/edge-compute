@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Edge Compute — Spatial Agent</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div id="ui">
+        <strong>⚡ EDGE COMPUTE</strong>
+        
+        <div id="ai-narration">
+            <div id="ai-explanation"></div>
+            <div id="ai-suggestion"></div>
+        </div>
+        
+        <button data-cmd="spawn a red cube">1. Spawn Red Cube</button>
+        <button data-cmd="make it bigger">2. Make Bigger</button>
+        <button data-cmd="make it blue">3. Turn Blue</button>
+        <button data-cmd="delete it">4. Delete</button>
+        <button data-cmd="add a green sphere to my left">5. Green Sphere (Left)</button>
+        <button data-cmd="spawn three cubes">6. Spawn 3 Cubes</button>
+        <button id="vision-btn">7. 👁️ Vision Analyze</button>
+        <button id="undo-btn">8. ↶ Undo</button>
+        
+        <button id="voice-btn">🎤 Hold to Speak</button>
+        
+        <div id="status">🟢 Connected</div>
+        
+       <div id="stats">
+    <div>Requests: <span id="stat-count">0</span></div>
+    <div>Latency: <span id="stat-avg">0 ms</span></div>
+    <div>Memory: <span id="stat-mem">0</span></div>
+</div>
+    </div>
+    
+    <button id="enter-vr">Enter VR</button>
+    
+    <script type="module" src="/main.js"></script>
+</body>
+</html>

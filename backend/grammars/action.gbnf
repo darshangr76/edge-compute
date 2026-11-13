@@ -1,0 +1,36 @@
+root        ::= plan | array | object
+plan        ::= "{" ws "\"plan\"" ws ":" ws "[" ws (step (ws "," ws step)*)? ws "]" ws "}"
+step        ::= "{" ws "\"step\"" ws ":" ws number ws "," ws "\"action\"" ws ":" ws object ws "}"
+array       ::= "[" ws (object (ws "," ws object)*)? ws "]"
+
+object      ::= "{" ws "\"action\"" ws ":" ws action ws "," ws
+                     "\"object\"" ws ":" ws objname ws "," ws
+                     "\"params\"" ws ":" ws params extra-fields ws "}"
+
+extra-fields ::= "" 
+               | "," ws "\"explanation\"" ws ":" ws json-string 
+               | "," ws "\"suggestion\"" ws ":" ws json-string 
+               | "," ws "\"explanation\"" ws ":" ws json-string ws "," ws "\"suggestion\"" ws ":" ws json-string 
+               | "," ws "\"suggestion\"" ws ":" ws json-string ws "," ws "\"explanation\"" ws ":" ws json-string 
+
+json-string ::= "\"" ([^"\\] | "\\" .)* "\""
+
+action      ::= "\"spawn\"" | "\"move\"" | "\"scale\"" | "\"delete\"" | "\"color\""
+objname     ::= "\"cube\"" | "\"sphere\""
+params      ::= spawn-params | move-params | scale-params | delete-params | color-params
+spawn-params   ::= "{" ws "\"color\"" ws ":" ws color ws "," ws
+                        "\"position\"" ws ":" ws vec3 ws "}"
+move-params    ::= "{" ws (delta-field | to-field) ws "}"
+scale-params   ::= "{" ws "\"factor\"" ws ":" ws factor ws "}"
+delete-params  ::= "{" ws "}"
+color-params   ::= "{" ws "\"color\"" ws ":" ws color ws "}"
+delta-field ::= "\"delta\"" ws ":" ws vec3
+to-field    ::= "\"to\"" ws ":" ws vec3
+color       ::= "\"#" hex hex hex hex hex hex "\""
+hex         ::= [0-9a-f]
+vec3        ::= "[" ws num ws "," ws num ws "," ws num ws "]"
+num         ::= "-"? ("0" | [1-9] [0-9]?) ("." [0-9] [0-9]?)?
+factor      ::= ("0" "." [1-9]) | ("1" | "2" | "3" | "4") ("." [0-9] [0-9]?)?
+                | "5" "." "0" | "5"
+number      ::= [0-9]+
+ws          ::= [ \t\n]*
