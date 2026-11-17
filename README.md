@@ -19,3 +19,6 @@ A 100% local, zero-cloud AI spatial agent for WebXR. Built for the Meta VR Start
    ```bash
    cd backend
    g++ -std=c++17 -O2 src/main.cpp -o build/edge-server -Iinclude -lssl -lcrypto -lpthread
+
+YouTube link 
+https://youtu.be/ZexDESrvYbk
